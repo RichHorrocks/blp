@@ -57,8 +57,8 @@ public class DisplayGraphsActivity extends Activity {
          * Create our graph data.
          */
         GraphViewData[] userData = new GraphViewData[values.size()];             
-        GraphViewSeries exampleSeries = new GraphViewSeries(userData);                                  
-        
+        GraphViewSeries exampleSeries = new GraphViewSeries(userData);
+                
         /*
          * There aren't enough entries to create a graph. Inform the user of this, and don't display one.
          */
@@ -78,7 +78,7 @@ public class DisplayGraphsActivity extends Activity {
             for (index = 0; index < values.size(); index++) {
                 userData[index] = new GraphViewData(index, values.get(index).getVo2());                
             }
-                
+            
             /*
              * Set the graph name.
              */                    
@@ -93,42 +93,15 @@ public class DisplayGraphsActivity extends Activity {
              */            
             
             /*
-             * Get the number of unique VO2 values.
-             * TODO There must be a better way to do this...
+             * If we've got more than 20 values, set the number of X values to 10.
              */
-            int[] yLabels = new int[values.size()];
-            int yLabelsCount = 1;
-            int yLabelHigh = 0;
-            yLabels[0] = values.get(0).getVo2();
-                        
-            for (index = 0; index < values.size(); index++) {
-                int index2 = 0;
-                while (index2 < yLabelsCount && values.get(index).getVo2() != yLabels[index2]) {
-                    index2++;                    
-                }
-                
-                if (index2 == yLabelsCount) {
-                    yLabels[yLabelsCount] = values.get(index).getVo2();
-                    if (yLabels[yLabelsCount] > yLabelHigh) {
-                        yLabelHigh = yLabels[yLabelsCount];
-                    }
-                    yLabelsCount++;
-                }
-            }    
-
-            /*
-             * Label the Y-axis.
-             * We start at 0. Assume there will always be low-ish values.
-             * Increment in units of 4.
-             */
-            //int[] yLabelsB = new int[yLabelHigh + (yLabelHigh % 4)]; 
-            //for (index = 0; index < (yLabelHigh + (yLabelHigh % 4)) / 4; index++) {
-                
-            //}                        
-
+            if (values.size() > 20){
+            	graphView.getGraphViewStyle().setNumHorizontalLabels(10); 	
+            } else {
+            	graphView.getGraphViewStyle().setNumHorizontalLabels(values.size()); 
+            }
             
             graphView.getGraphViewStyle().setNumVerticalLabels(11);            
-            graphView.getGraphViewStyle().setNumHorizontalLabels(values.size());
             graphView.getGraphViewStyle().setVerticalLabelsColor(Color.BLACK);
             graphView.getGraphViewStyle().setHorizontalLabelsColor(Color.BLACK);
             graphView.getGraphViewStyle().setTextSize(20);
