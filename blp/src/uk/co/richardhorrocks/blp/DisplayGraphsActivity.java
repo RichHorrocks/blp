@@ -18,8 +18,6 @@ import com.jjoe64.graphview.GraphViewSeries;
 import com.jjoe64.graphview.LineGraphView;
 
 public class DisplayGraphsActivity extends Activity {
-
-
 	
     /**
      * Sets the Action Bar for new Android versions.
