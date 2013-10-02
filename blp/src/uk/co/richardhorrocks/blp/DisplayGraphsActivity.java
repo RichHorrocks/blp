@@ -79,6 +79,7 @@ public class DisplayGraphsActivity extends Activity {
                 userData[index] = new GraphViewData(index, values.get(index).getVo2());                
             }
             
+            
             /*
              * Set the graph name.
              */                    
