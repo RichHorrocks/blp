@@ -569,6 +569,9 @@ public class MainActivity extends ListActivity {
 		} else if (itemId == R.id.action_results) {
 			intent = new Intent(this, DisplayResultsActivity.class);
 			startActivity(intent);
+		} else if (itemId == R.id.action_instructions) {
+			intent = new Intent(this, DisplayInstructionsActivity.class);
+			startActivity(intent);
 		} else {
 			intent = null;
 			startActivity(intent);
