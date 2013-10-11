@@ -44,7 +44,7 @@
             android:text=
 "Stand at one end of the shuttle you've marked out. When you start the app you'll hear three high-pitched bleeps followed by a fourth, lower-pitched bleep. On the fourth bleep the timer will start, and you'll start running.\n
 \nYou must reach the far end of the shuttle either before or on the next bleep. If you reach the far end before the next bleep, you must wait for the bleep before continuing.\n
-\nAfter a certain number of shuttles you'll here a high-pitched bleep. This means you've moved up to the next level. The bleeps will now be closer together than before, meaning you'll have to run faster.\n
+\nAfter a certain number of shuttles you'll hear a high-pitched bleep. This means you've moved up to the next level. The bleeps will now be closer together than before, meaning you'll have to run faster.\n
 \nIf you fail to reach the far end of the shuttle before the next bleep, and if this happens for two shuttles in a row, then your test is over and you must stop.\n" />
     </LinearLayout>
     </ScrollView>        
