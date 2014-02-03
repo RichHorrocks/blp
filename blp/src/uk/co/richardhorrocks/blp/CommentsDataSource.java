@@ -1,7 +1,5 @@
 package uk.co.richardhorrocks.blp;
 
-
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -109,7 +107,7 @@ public class CommentsDataSource {
     }
            
     private Times cursorToTime(Cursor cursor) {
-        Times time = new Times();
+        Times time = new Times(0, null, null, null, null, null, 0, false, false);
         time.setId(cursor.getLong(0));
         time.setDate(cursor.getString(1));
         time.setName(cursor.getString(2));

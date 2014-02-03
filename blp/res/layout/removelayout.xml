@@ -1,78 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:gravity="center_vertical" >
     <TextView
         android:layout_marginLeft="5dp"
         android:id="@+id/label"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"                
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxLength="10"
+        android:layout_centerVertical="true"                
         android:textSize="18sp" />
     <Button
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
         android:background="@drawable/magentabutton"
         style="@style/ButtonText"   
         android:text="@string/removeuserText"
         android:id="@+id/removeuserButton" />
-    <TextView
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"            
-        android:id="@+id/userLevel"
+    <RelativeLayout
+        android:id="@+id/buttonLayout"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"        
-        android:textSize="15sp" 
-        android:visibility="gone" />
-    <TextView
+        android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"        
-        android:id="@+id/userTime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"        
-        android:textSize="12sp"
-        android:textColor="#898585" 
-        android:visibility="gone"/>
-    <TextView
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"        
-        android:id="@+id/userDistance"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"        
-        android:textSize="12sp"
-        android:textColor="#898585" 
-        android:visibility="gone"/>        
+        android:layout_alignParentRight="true">        
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"            
+            android:background="@drawable/magentabutton"
+            style="@style/ButtonText"   
+            android:text="@string/saveText"
+            android:id="@+id/saveuserButton"
+            android:visibility="gone" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"            
+            android:background="@drawable/greenbutton"
+            style="@style/ButtonText"
+            android:textSize="14sp"   
+            android:text="@string/savedText"
+            android:id="@+id/saveduserButton"
+            android:visibility="gone" />
+        </RelativeLayout>    
     <Button
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/magentabutton"
-        style="@style/ButtonText"   
-        android:text="@string/saveText"
-        android:id="@+id/saveuserButton"
-        android:visibility="gone" />
-    <Button
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/greenbutton"
-        style="@style/ButtonText"
-        android:textSize="14sp"   
-        android:text="@string/savedText"
-        android:id="@+id/saveduserButton"
-        android:visibility="gone" />    
-    <Button
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
         android:background="@drawable/magentabutton"
         style="@style/ButtonText"   
         android:text="@string/stopText"
         android:id="@+id/stopuserButton"
         android:visibility="gone" />
-</LinearLayout> 
+    <TextView
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"        
+        android:id="@+id/userDistance"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"  
+        android:layout_centerVertical="true"        
+        android:layout_toLeftOf="@id/buttonLayout"   
+        android:textSize="12sp"
+        android:textColor="#898585" 
+        android:visibility="gone"/>
+    <TextView
+        android:id="@+id/userVo2"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:textSize="12sp"         
+        android:visibility="gone"/>        
+    <TextView
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"        
+        android:id="@+id/userTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"        
+        android:layout_toLeftOf="@id/userDistance"
+        android:textSize="12sp"
+        android:textColor="#898585" 
+        android:visibility="gone"/>
+    <TextView
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"                    
+        android:id="@+id/userLevel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"        
+        android:layout_toLeftOf="@id/userTime"
+        android:textSize="15sp" 
+        android:visibility="gone" />    
+</RelativeLayout> 

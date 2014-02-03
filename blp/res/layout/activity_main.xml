@@ -2,114 +2,86 @@
     <RelativeLayout 
         xmlns:android="http://schemas.android.com/apk/res/android"          
         android:layout_width="fill_parent"  
-        android:layout_height="fill_parent">  
-        <LinearLayout  
-            android:orientation="vertical"  
-            android:layout_width="fill_parent"  
-            android:layout_height="fill_parent"  
-            android:id="@+id/linearLayout">  
-
+        android:layout_height="fill_parent">
+        
+        <RelativeLayout
+            android:id="@+id/timerBackground"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"            
+            android:background="@drawable/timerbackground">
+        
+            <TextView
+                android:id="@+id/stage"
+                style="@style/ButtonText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"               
+                android:layout_marginLeft="10dp"                
+                android:text="@string/stage"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp" />     
+                
+            <TextView
+                android:id="@+id/level"
+                style="@style/ButtonText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/stage"
+                android:layout_marginLeft="10dp"                
+                android:text="@string/level"
+                android:textColor="#FFFFFF"
+                android:textSize="40sp" />
+                      
             <LinearLayout
-                android:id="@+id/timerBackground"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/timerbackground"
-                android:orientation="horizontal" >
-
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:layout_toRightOf="@id/level"
+                android:orientation="vertical" >
+            
                 <TextView
-                    android:id="@+id/stage"
+                    android:id="@+id/timer"
                     style="@style/ButtonText"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="10dp"
-                    android:gravity="left"
-                    android:text="@string/stage"
-                    android:textColor="#FFFFFF"
+                    android:layout_height="wrap_content"                                               
+                    android:text="@string/timer"
                     android:textSize="20sp" />
-
+                    
                 <TextView
-                    android:id="@+id/level"
+                    android:id="@+id/distance"
                     style="@style/ButtonText"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="10dp"
-                    android:gravity="left"
-                    android:text="@string/level"
-                    android:textColor="#FFFFFF"
-                    android:textSize="40sp" />
-
-                <LinearLayout
-                    android:layout_width="fill_parent"
-                    android:layout_height="106dp"
-                    android:layout_weight="0.38"
-                    android:orientation="vertical" >
-
-                    <TextView
-                        android:id="@+id/timer"
-                        style="@style/ButtonText"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginTop="30dp"
-                        android:text="@string/timer"
-                        android:textSize="20sp" />
-
-                    <TextView
-                        android:id="@+id/distance"
-                        style="@style/ButtonText"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginTop="10dp"
-                        android:text="@string/distance"
-                        android:textSize="20sp" />
-                </LinearLayout>
+                    android:layout_height="wrap_content"                                              
+                    android:text="@string/distance"
+                    android:textSize="20sp" />
             </LinearLayout>
+        </RelativeLayout>        
+                    
+        <RelativeLayout
+            android:id="@+id/bottomRelative"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"            
+            android:layout_alignParentBottom="true">
 
             <LinearLayout  
-                android:orientation="horizontal"  
-                android:layout_gravity="center_horizontal"  
-                android:gravity="center"  
-                android:layout_width="wrap_content"  
-                android:layout_height="270dp"  
-                android:layout_marginTop="5dp" >
-                <ListView
-                    android:id="@android:id/list"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:drawSelectorOnTop="false" >
-                </ListView>
-            </LinearLayout>
-            <LinearLayout  
-                android:orientation="horizontal"  
-                android:layout_width="wrap_content"  
-                android:layout_height="wrap_content"  
-                android:layout_gravity="center_horizontal">  
-                <ImageView
-                    android:contentDescription="@null"
-                    android:src="@drawable/hline"  
-                    android:layout_height="wrap_content"  
-                    android:layout_gravity="center"  
-                    android:layout_marginTop="5dp"  
-                    android:layout_marginBottom="10dp"  
-                    android:layout_width="wrap_content" />
-            </LinearLayout>
-            <LinearLayout  
+                android:id="@+id/linearLayout"
                 android:orientation="horizontal"  
                 android:gravity="center"
-                android:layout_width="wrap_content"  
-                android:layout_height="wrap_content">
+                android:layout_marginTop="5dp"            
+                android:layout_width="fill_parent"  
+                android:layout_height="wrap_content">    
+                        
                 <EditText 
                     android:id="@+id/newuserName"                    
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="wrap_content"                
                     android:singleLine="true"
                     android:maxLength="15"
-                    android:hint="@string/newuserText" />                
+                    android:hint="@string/newuserText" />                            
+
                 <Button 
                     android:text="@string/adduserText" 
                     android:layout_marginLeft="5dp"
@@ -120,10 +92,20 @@
                     android:id="@+id/adduserButton"
                     android:onClick="addUserClick"
                     style="@style/ButtonText" />   
+            </LinearLayout>            
+            
+            <LinearLayout  
+                android:orientation="horizontal"  
+                android:gravity="center"
+                android:layout_below="@id/linearLayout"                
+                android:layout_width="fill_parent"  
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp">                    
+                
                 <Button
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
-                    android:layout_width="wrap_content"                    
+                    android:layout_width="fill_parent"                    
                     android:layout_height="wrap_content"
                     android:background="@drawable/magentabutton" 
                     android:text="@string/allStopText"
@@ -134,7 +116,7 @@
                 <Button
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
-                    android:layout_width="wrap_content"
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"                    
                     android:background="@drawable/magentabutton"
                     style="@style/ButtonText"                       
@@ -146,7 +128,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
+                    android:layout_width="fill_parent"
                     android:layout_gravity="center"
                     android:background="@drawable/greenbutton"
                     style="@style/ButtonText"   
@@ -154,5 +136,17 @@
                     android:id="@+id/startButton"
                     android:onClick="startClick"/>  
             </LinearLayout>    
-        </LinearLayout>  
+        
+        </RelativeLayout>        
+        
+        <ListView
+            android:id="@android:id/list"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="5dp"
+            android:layout_above="@id/bottomRelative"
+            android:layout_below="@id/timerBackground"                        
+            android:drawSelectorOnTop="false" >
+        </ListView>        
+        
     </RelativeLayout> 

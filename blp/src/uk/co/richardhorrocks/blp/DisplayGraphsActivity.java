@@ -7,9 +7,11 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.Menu;
 import android.widget.LinearLayout;
 import com.jjoe64.graphview.GraphView;
@@ -104,8 +106,11 @@ public class DisplayGraphsActivity extends Activity {
             
             graphView.getGraphViewStyle().setNumVerticalLabels(11);            
             graphView.getGraphViewStyle().setVerticalLabelsColor(Color.BLACK);
-            graphView.getGraphViewStyle().setHorizontalLabelsColor(Color.BLACK);
-            graphView.getGraphViewStyle().setTextSize(20);
+            graphView.getGraphViewStyle().setHorizontalLabelsColor(Color.BLACK);    
+            
+            Resources r = getResources();                        
+            graphView.getGraphViewStyle().setTextSize(
+            		TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 15, r.getDisplayMetrics()));  
             graphView.setManualYAxisBounds(100, 0);
             graphView.addSeries(exampleSeries);
                            

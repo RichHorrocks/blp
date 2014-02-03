@@ -25,6 +25,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends ListActivity {
 	
@@ -33,10 +34,12 @@ public class MainActivity extends ListActivity {
 	 */
 	static int userMax   = 5;
     static int userStopped = 0;
-	EditText addUserText;
+    static int userCount = 0;
+    EditText addUserText;
 	String   addUserString;
 	
-	ArrayList<String> listItems = new ArrayList<String>();
+	//ArrayList<String> listItems = new ArrayList<String>();
+	ArrayList<Times> listItems = new ArrayList<Times>();
 	MainArrayAdapter adapter;	
 	
     /*
@@ -76,7 +79,6 @@ public class MainActivity extends ListActivity {
      * Static declarations used by other activities.
      */
     public static KeyListener savedListener;
-    public static int userCount = 0;
     public static boolean showListStop = false;
     public static boolean resetList = false;
     public static boolean stopList = false;
@@ -90,7 +92,7 @@ public class MainActivity extends ListActivity {
      */
 	public void addUserClick (View view) {
         /*
-         * Hide the virtual keyboard.0
+         * Hide the virtual keyboard.
          */	    
         InputMethodManager imm = 
           (InputMethodManager)this.getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -126,8 +128,10 @@ public class MainActivity extends ListActivity {
             	 */
             	adapter = new MainArrayAdapter(this, listItems);
             	setListAdapter(adapter);
-            	listItems.add(addUserString);
-                adapter.notifyDataSetChanged();
+            	//listItems.add(addUserString);
+                listItems.add(new Times((long)0, "", addUserString, "", "", "", 0, false, false));
+            	adapter.notifyDataSetChanged();
+                
                 
                 /*
                  * Clear the entered name from the text box..parseColor("#E19090"));
@@ -147,6 +151,10 @@ public class MainActivity extends ListActivity {
                     savedListener = ((EditText)findViewById(R.id.newuserName)).getKeyListener();
                     ((EditText)findViewById(R.id.newuserName)).setKeyListener(null);                    
                 }    
+            } else {
+            	/*
+            	 * The maximum number of users has already been defined.
+            	 */
             }
     	}    
     }
@@ -337,6 +345,7 @@ public class MainActivity extends ListActivity {
     		 * If all individual users have stopped, stop the overall timer.
     		 */
     		if (userStopped == userCount) {
+    			stopList = true;
     		    stopEvent();
     	    }
        	};
@@ -422,6 +431,7 @@ public class MainActivity extends ListActivity {
     	 * stop button.
     	 */
     	showListStop = true;
+    	resetList = false;
         adapter.notifyDataSetChanged();
 
         /*
@@ -457,8 +467,7 @@ public class MainActivity extends ListActivity {
         showListStop = false;
         resetList = true;
         stopList = false;
-        adapter.notifyDataSetChanged();
-        resetList = false;
+        adapter.notifyDataSetChanged();        
         
         ((Button)findViewById(R.id.startButton)).setVisibility(View.VISIBLE);
         ((TextView)findViewById(R.id.timer)).setText(R.string.timer);
@@ -473,10 +482,11 @@ public class MainActivity extends ListActivity {
      * Handle the overall 'Stop' button being pressed.
      */
     public void stopClick (View view) {                
-        stopList = true;
-        adapter.notifyDataSetChanged();        
-        
         stopEvent();
+    	
+    	stopList = true;
+        showListStop = false;
+        adapter.notifyDataSetChanged();                
     }
     
     /*
@@ -499,30 +509,21 @@ public class MainActivity extends ListActivity {
          */
         ((Button)findViewById(R.id.stopButton)).setVisibility(View.GONE);        
         ((Button)findViewById(R.id.resetButton)).setVisibility(View.VISIBLE);        
-    }
-    
-    /*
-     * We're pausing the app - save anything we need!
-     */
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-       super.onSaveInstanceState(outState);
-       
-    }
-    
+    }        
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);                               
-        
+
         /*
-         * Check if we're resuming from a previous state.
-         * Currently not implemented.
+         * Initialise some variables.
          */
-        if (savedInstanceState != null) {
-                        
-        }        
+        userStopped = 0;
+        userCount = 0;
+        showListStop = false;
+        resetList = false;
+        stopList = false;
         
         /*
          * Create the SQL database.
@@ -543,13 +544,13 @@ public class MainActivity extends ListActivity {
         
         /*
          * Begin with the 'Start' button as unclickable.
-         */
-        ((Button)findViewById(R.id.startButton)).setVisibility(View.GONE);
+         */        
         userButtonView = (Button)findViewById(R.id.adduserButton);
         userTextView = (EditText)findViewById(R.id.newuserName);
         startButtonView = (Button)findViewById(R.id.startButton);
+        startButtonView.setVisibility(View.GONE);
     }
-    
+        
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);

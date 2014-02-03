@@ -1,68 +1,63 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".DisplayResultsActivity" >
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal" >
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
         <TextView
             android:id="@+id/dateHeader"
-            android:layout_width="75dp"
-            android:layout_height="wrap_content"
-            android:text="@string/dateHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"            
+            android:layout_weight="0.3"                    
+            android:text="@string/dateHeader"            
             android:textSize="15sp"
             android:textColor="#21cbbd"
-            android:layout_marginLeft="5dp" />
+            android:layout_marginLeft="5dp" />        
         <TextView
             android:id="@+id/nameHeader"
-            android:layout_width="130dp"
-            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"            
+            android:layout_weight="0.35"
             android:text="@string/nameHeader"
             android:textColor="#21cbbd"
             android:textSize="15sp" />
         <TextView
             android:id="@+id/levelHeader"
-            android:layout_width="50dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_weight="0.12"
             android:text="@string/levelHeader"
             android:textColor="#21cbbd"
             android:textSize="15sp" />
         <TextView
             android:id="@+id/timeHeader"
-            android:layout_width="50dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_weight="0.15"
             android:text="@string/timeHeader"
             android:textColor="#21cbbd"
             android:textSize="15sp" />
         <TextView
             android:id="@+id/vo2Header"
-            android:layout_width="50dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_weight="0.08"
             android:text="@string/vo2Header"
             android:textColor="#21cbbd"
             android:textSize="15sp" />
-    </LinearLayout>               
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="400dp"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal" >
-        <ListView
-            android:id="@android:id/list"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_marginLeft="5dp" >
-        </ListView>
     </LinearLayout>
-    <LinearLayout
-        android:layout_width="wrap_content"
+                       
+    <RelativeLayout
+        android:id="@+id/footer"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:layout_marginBottom="10dp"
-        android:layout_marginTop="10dp"
-        android:orientation="vertical" >
+        android:layout_marginTop="10dp" >                
         <TextView
             android:id="@+id/sortInstructions"
             android:layout_width="wrap_content"
@@ -74,6 +69,7 @@
             android:id="@+id/graphInstructions"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@id/sortInstructions"
             android:text="@string/graphInstructions"
             android:textSize="12sp"
             android:layout_marginLeft="5dp" />
@@ -81,8 +77,20 @@
             android:id="@+id/deleteInstructions"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@id/graphInstructions"
             android:text="@string/deleteInstructions"
             android:textSize="12sp"
             android:layout_marginLeft="5dp" />
-    </LinearLayout>    
-</LinearLayout>
+    </RelativeLayout>
+    
+    <ListView
+        android:layout_marginTop="10dp"
+        android:id="@android:id/list"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_above="@id/footer"
+        android:layout_below="@id/header"                                    
+        android:layout_marginLeft="5dp" >
+    </ListView>
+    
+</RelativeLayout>
