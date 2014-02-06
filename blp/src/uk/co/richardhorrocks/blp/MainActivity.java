@@ -25,7 +25,6 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class MainActivity extends ListActivity {
 	
@@ -78,6 +77,7 @@ public class MainActivity extends ListActivity {
     /*
      * Static declarations used by other activities.
      */
+    public static long runId = 1;
     public static KeyListener savedListener;
     public static boolean showListStop = false;
     public static boolean resetList = false;
@@ -432,6 +432,7 @@ public class MainActivity extends ListActivity {
     	 */
     	showListStop = true;
     	resetList = false;
+    	runId++;
         adapter.notifyDataSetChanged();
 
         /*
@@ -518,7 +519,7 @@ public class MainActivity extends ListActivity {
 
         /*
          * Initialise some variables.
-         */
+         */        
         userStopped = 0;
         userCount = 0;
         showListStop = false;

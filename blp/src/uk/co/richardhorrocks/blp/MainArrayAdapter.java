@@ -15,7 +15,6 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class MainArrayAdapter extends ArrayAdapter<Times> {
     private final Context context;
@@ -29,7 +28,7 @@ public class MainArrayAdapter extends ArrayAdapter<Times> {
 	  	
 	@Override
 	public View getView(final int position, View convertView, ViewGroup parent) {	    
-Log.e("MyActivity", "1");	  
+		
 		/*
 		 * Inflate!
 		 */
@@ -45,19 +44,36 @@ Log.e("MyActivity", "1");
         final TextView userLevelView = (TextView)rowView.findViewById(R.id.userLevel);
         final TextView userDistanceView = (TextView)rowView.findViewById(R.id.userDistance);
         final TextView userVo2View = (TextView)rowView.findViewById(R.id.userVo2);
-		userNameView.setText(values.get(position).getName());	    
-
+		userNameView.setText(values.get(position).getName());  // Constant while user exists	    
 		final Button removeButtonView = (Button)rowView.findViewById(R.id.removeuserButton);
 		final Button saveButtonView = (Button)rowView.findViewById(R.id.saveuserButton);
         final Button stopButtonView = (Button)rowView.findViewById(R.id.stopuserButton);
         final Button savedButtonView = (Button)rowView.findViewById(R.id.saveduserButton);
         
         /*
-         * We've started the run. Set all users' views to show 'stop' buttons.
+         * The scroll handling requires that we basically have a state machine.
+         * Check whether we're currently on the same run id.
+         */
+        Log.i("MyActivity", "MA=" + MainActivity.runId + " user=" + values.get(position).getId());        
+        if (MainActivity.runId != values.get(position).getId()) {
+            values.set(position,
+                       new Times((long)MainActivity.runId,
+      		    	   "",
+      			       values.get(position).getName(),
+         			   "",
+      	    		   "",
+      		    	   "",
+      			       0,
+      	    		   false,
+      		    	   false));
+        }
+        
+        /*
+         * We've started the run.
          */
 		if (MainActivity.showListStop) {		
             removeButtonView.setVisibility(View.GONE);
-            stopButtonView.setVisibility(View.VISIBLE);
+            stopButtonView.setVisibility(View.VISIBLE);                        
 		}
 		
 		/*
@@ -65,14 +81,14 @@ Log.e("MyActivity", "1");
 		 * position (each showing a 'remove' button).
 		 */
 		if (MainActivity.resetList) {
-Log.e("MyActivity", "2");
+Log.i("MyActivity", "2");
 			removeButtonView.setVisibility(View.VISIBLE);
             stopButtonView.setVisibility(View.GONE);
             saveButtonView.setVisibility(View.GONE);
             userTimeView.setVisibility(View.GONE);
             userLevelView.setVisibility(View.GONE);
             userDistanceView.setVisibility(View.GONE);
-            savedButtonView.setVisibility(View.GONE);						
+            savedButtonView.setVisibility(View.GONE);
 		}
 			
 		/*
@@ -81,12 +97,12 @@ Log.e("MyActivity", "2");
 		 */
 		if (!MainActivity.resetList && values.get(position).getStopped()) {
 		    if (values.get(position).getSaved()) {
-Log.e("MyActivity", "5");
+Log.i("MyActivity", "5");
                 stopButtonView.setVisibility(View.GONE);                
                 savedButtonView.setVisibility(View.VISIBLE);
 			    savedButtonView.setClickable(false);
 		    } else {
-Log.e("MyActivity", "6");					
+Log.i("MyActivity", "6");					
                 stopButtonView.setVisibility(View.GONE);
                 saveButtonView.setVisibility(View.VISIBLE);
 		    }
@@ -108,7 +124,7 @@ Log.e("MyActivity", "6");
 		 * It's possible certain users will already have been stopped individually. Don't touch them.
 		 */
 		if (MainActivity.stopList && !values.get(position).getStopped()) {
-Log.e("MyActivity", "3");				
+Log.i("MyActivity", "3");				
             removeButtonView.setVisibility(View.GONE);
             stopButtonView.setVisibility(View.GONE);
             saveButtonView.setVisibility(View.VISIBLE);
@@ -172,7 +188,7 @@ Log.e("MyActivity", "3");
 	                     * Set that we've now saved this item.
 	                     */
                         values.set(position,
-                                   new Times((long)0,
+                                   new Times(values.get(position).getId(),
                      			   "",
                      			   values.get(position).getName(),
                      			   values.get(position).getTime(),
@@ -210,7 +226,7 @@ Log.e("MyActivity", "3");
                         userVo2View.setText(String.valueOf(MainActivity.userVo2));
                         
                         values.set(position,
-                        		   new Times((long)0,
+                        		   new Times(values.get(position).getId(),
                         				     "",
                         				     userNameView.getText().toString(),
                     		                 MainActivity.userTime,
