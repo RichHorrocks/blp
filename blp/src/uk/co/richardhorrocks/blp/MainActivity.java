@@ -31,7 +31,7 @@ public class MainActivity extends ListActivity {
 	/*
 	 * Globals used when adding new users.
 	 */
-	static int userMax   = 5;
+	static int userMax = 12;
     static int userStopped = 0;
     static int userCount = 0;
     EditText addUserText;
