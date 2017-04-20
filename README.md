@@ -21,3 +21,5 @@ The graphing functionality requires the use of the GraphView library, which isn'
  To build requires the use of Android Studio, or equivalent platform. The code has been updated to handle Gradle builds.
 
 ### Screenshots
+
+<img src="img/1.jpg" width="200">          <img src="img/2.jpg" width="200">          <img src="img/3.jpg" width="200">
