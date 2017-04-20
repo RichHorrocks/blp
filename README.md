@@ -1,4 +1,6 @@
-## blp - The bleep test app
+## blp - The Google Android bleep test app
+
+The app is available in the Google Play store. For free.
 
 The motivation for this project was the lack of fully functional bleep test apps available in the Google Play store at the time. Specifically, I wanted an ad-free, multi-person app that was both functional and didn't cost anything.
 
